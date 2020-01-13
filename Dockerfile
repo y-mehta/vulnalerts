@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3-stretch
 
 LABEL "com.github.actions.name"="VulnAlerts"
 LABEL "com.github.actions.description"="Daily customized CVE Alerts straight to your Slack Inbox for Free."
@@ -11,10 +11,9 @@ LABEL "homepage"="https://github.com/y-mehta/vulnalerts"
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-COPY entrypoint.sh /entrypoint.sh
+COPY README.md main.py entrypoint.sh /
 
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [ "/entrypoint.sh" ]
