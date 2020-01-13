@@ -1,4 +1,4 @@
-# vulnalerts - Customized CVE Alerts straight to your Slack Channel
+# VulnAlerts - Customized CVE Alerts straight to your Slack Channel
 
 ## How to Use?
 - Fork the project.
@@ -6,10 +6,14 @@
 - Goto Repository Settings -> Secrets -> Add a New Secret
 - Enter ```SLACK_WEBHOOK``` in the Secret Name and your slack webhook in the value.
 - Add CPEs of the products that you want to monitor for vulnerabilities in the **cpe.txt** file. [NVD CPE Search](https://nvd.nist.gov/products/cpe/search)
+- That's it. You'll receive daily alerts on the selected slack channel.
 
 Note: No need to enter full CPE unless you want to monitor specific version. ```apple:icloud``` or ```atlassian:sourcetree``` will do the job.
 
+- Action Schedule can be changed in ```.github/workflows/alert.yml``` if needed. Follow crontab format(@daily,@monthly etc. aren't supported by Github Actions)
+
 ## How it Works?
+- GitHub Actions WorkFlow is automatically triggered based on schedule.
 - [CVE-Recent JSON Vulnerability Feed](https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-recent.json.gz) is fetched from the NVD.
 - The JSON feed is processed to check if any CPEs mentioned in **cpe.txt** are present in the Feed.
 - After processing is done, It'll send the message to Slack Incoming Webhook.
