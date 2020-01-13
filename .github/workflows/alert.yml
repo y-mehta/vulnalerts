@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - run: sudo apt-get install python3-setuptools
     - name: install dependencies
       run: pip3 install -r requirements.txt
     - name: run python script
