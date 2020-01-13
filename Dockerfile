@@ -16,4 +16,4 @@ ENV PYTHONUNBUFFERED 1
 
 COPY README.md main.py entrypoint.sh .
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "sh entrypoint.sh" ]
