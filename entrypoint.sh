@@ -4,4 +4,4 @@ set -e
 
 VENV_NAME=${VENV_DIR:=venv}
 
-sh -c "python main.py"
+sh -c "python /main.py"
