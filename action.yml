@@ -1,0 +1,8 @@
+name: 'VulnAlerts'
+description: 'Customized daily Vulnerabilty Alerts straight to your Slack Inbox for Free.'
+branding:
+  icon: 'shield'
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
