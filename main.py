@@ -9,7 +9,6 @@ def get_nvd_feed():
     wget.download(url)
     command = 'unzip -o nvdcve-1.0-recent.json.zip' # Unzip json.gz file
     os.system(command)
-    print('JSON Feed Downloaded Successfully')
 
 def get_cpes():
     with open('cpe.txt', 'r') as v:
@@ -25,19 +24,17 @@ def parse_nvd_feed(cpes):
     message = ""
 
     for x in cve_feed['CVE_Items']:
-        cve_id = cve_feed['CVE_Items'][cve_index]['cve']['CVE_data_meta']['ID']
-        cve_description = cve_feed['CVE_Items'][cve_index]['cve']['description']['description_data'][0]['value']
+        id = cve_feed['CVE_Items'][cve_index]['cve']['CVE_data_meta']['ID']
+        description = cve_feed['CVE_Items'][cve_index]['cve']['description']['description_data'][0]['value']
         try:
             cpe_string = cve_feed['CVE_Items'][cve_index]['configurations']['nodes'][0]['cpe_match']
         except:
             cpe_string = ""
         for line in cpes:
             for cpe in line.split():
-                print(cpe)
                 for x in cpe_string:
                     if cpe in x.get('cpe23Uri'):
-                        message = message + slack_block_format(cpe, cve_description, cve_id)
-                        print(message)
+                        message = message + slack_block_format(cpe, description, id)
                         cve_count = cve_count + 1
         cve_index = cve_index + 1
     return message,cve_count
