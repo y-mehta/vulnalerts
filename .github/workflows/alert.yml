@@ -2,19 +2,15 @@ name: VulnAlerts
 
 on: 
   schedule:
-    - cron:  '1 * */1 * *'
+    - cron:  '* * * * *'
 
 jobs:
   alert:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: sudo apt-get install python3-setuptools
-    - name: install dependencies
-      run: pip3 install -r requirements.txt
-    - name: run python script
+    - uses: y-mehta/vulnalerts@master
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      run: python3 main.py
     - name: done
       run: echo 'done'
