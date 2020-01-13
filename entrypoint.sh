@@ -10,6 +10,6 @@ fi
 
 source "${GITHUB_WORKSPACE}/${VENV_NAME}/bin/activate"
 
-sh -c "pip install -r requirements.txt"
+sh -c "pip install wget requests"
 
 sh -c "python main.py"
