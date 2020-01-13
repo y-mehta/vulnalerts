@@ -10,7 +10,7 @@
 Note: No need to enter full CPE unless you want to monitor specific version. ```apple:icloud``` or ```atlassian:sourcetree``` will do the job.
 
 ## How it Works?
-- [CVE-Recent JSON Vulnerability Feed](https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-recent.json.gz) is fectched from the NVD.
+- [CVE-Recent JSON Vulnerability Feed](https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-recent.json.gz) is fetched from the NVD.
 - The JSON feed is processed to check if any CPEs mentioned in **cpe.txt** are present in the Feed.
 - After processing is done, It'll send the message to Slack Incoming Webhook.
 
